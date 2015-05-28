@@ -16,23 +16,9 @@ var words = function(word, number) {
   return wordArray;
 };
 
-// var where = function(sentence, word) {
-//   var down = sentence.toLowerCase();
-//   var split = sentenceSplit(down);
-//   for (var x=0; x <split.length; x++) {
-//     var comparethis = split[x]
-//     if (word.equals(comparethis) == true) {
-//       return true;
-//     } else {
-//       return false;
-//     };
-//   }
-//
-// };
 
 var wordPlace = function(sentence, word) {
   var places = []
-  // debugger;
   var down = sentence.toLowerCase();
   var split = sentenceSplit(down);
   var idx = split.indexOf(word)
@@ -47,7 +33,6 @@ var wordCounter = function(sentence) {
   var outputArray = []
   var lower = sentence.toLowerCase();
   var split = sentenceSplit(sentence)
-// debugger;
   for (var x=0; x < split.length; x++) {
     var word = split[x];
     var places = wordPlace(lower, word);
@@ -64,3 +49,16 @@ var wordCounter = function(sentence) {
   }
   return outputArray.join(", ")
 };
+
+$(document).ready(function() {
+  $("form#wordorder").submit(function(event) {
+    $(".sentence").empty();
+    var sentence = $("input#sentence").val();
+    var result = wordCounter(sentence);
+
+    $(".result").text(result);
+    $("#result").show();
+
+    event.preventDefault();
+  });
+});
